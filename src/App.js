@@ -3,12 +3,12 @@ import "./App.css";
 import SingleCard from "./components/SingleCard";
 
 const cardImages = [
-  { src: "/imgs/chris-bike.jpeg" },
-  { src: "/imgs/chris-repel.jpeg" },
-  { src: "/imgs/jaws.jpeg" },
-  { src: "/imgs/sara-bike.jpeg" },
-  { src: "/imgs/sara-repel.jpeg" },
-  { src: "/imgs/sitting-water.jpeg" },
+  { src: "/imgs/chris-bike.jpeg", matched: false },
+  { src: "/imgs/chris-repel.jpeg", matched: false },
+  { src: "/imgs/jaws.jpeg", matched: false },
+  { src: "/imgs/sara-bike.jpeg", matched: false },
+  { src: "/imgs/sara-repel.jpeg", matched: false },
+  { src: "/imgs/sitting-water.jpeg", matched: false },
 ];
 
 function App() {
@@ -39,7 +39,15 @@ function App() {
   useEffect(() => {
     if (choiceOne && choiceTwo) {
       if (choiceOne.src === choiceTwo.src) {
-        console.log("those cards match");
+        setCards(prevCards => {
+          return prevCards.map(card => {
+            if(card.src === choiceOne.src) {
+              return {...card, matched: true}
+            } else {
+              return card
+            }
+          })
+        })
         resetTurn();
       } else {
         console.log("those cards are NOT a match");
@@ -47,6 +55,8 @@ function App() {
       }
     }
   }, [choiceOne, choiceTwo]);
+
+  // console.log(cards)
 
   // reset choices & increase turn
   const resetTurn = () => {
