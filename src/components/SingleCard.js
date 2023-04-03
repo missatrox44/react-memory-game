@@ -1,6 +1,11 @@
 import "./SingleCard.css";
+import { useMediaQuery } from "@mui/material";
 
 export default function SingleCard({ card, handleChoice, flipped, disabled }) {
+
+  const isMobile = useMediaQuery("(max-width: 600px)");
+  const size = isMobile ? "60px" : "200px";
+
   const handleClick = () => {
     if (!disabled) {
       handleChoice(card);
@@ -10,10 +15,16 @@ export default function SingleCard({ card, handleChoice, flipped, disabled }) {
   return (
     <div className="card">
       <div className={flipped ? "flipped" : ""}>
-        <img className="front" height="200px" src={card.src} alt="card front" />
+        <img 
+          className="front" 
+          height={size}
+          width={size} 
+          src={card.src} 
+          alt="card front" />
         <img
           className="back"
-          height="200px"
+          height={size}
+          width={size}
           src="/imgs/cover.jpeg"
           alt="cover"
           onClick={handleClick}
