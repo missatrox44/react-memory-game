@@ -12,7 +12,7 @@ const cardImages = [
 
 function App() {
   const [cards, setCards] = useState([]);
-  const [turns, setTurns] = useState(0)
+  const [turns, setTurns] = useState(0);
 
   //shuffle cards -> create two of each card, mix them up, add ids
   const shuffleCards = () => {
@@ -22,15 +22,36 @@ function App() {
 
     //update card state
     setCards(shuffledCards);
-    setTurns(0)
+    setTurns(0);
   };
 
-  console.log(cards, turns)
+  console.log(cards, turns);
 
   return (
     <div className="App">
       <h1>Rio Secreto Match</h1>
       <button onClick={shuffleCards}>New Game</button>
+
+      <div className="card-grid">
+        {cards.map((card) => (
+          <div className="card" key={card.id}>
+            <div>
+              <img
+                className="front"
+                height="200px"
+                src={card.src}
+                alt="card front"
+              />
+              <img
+                className="back"
+                height="200px"
+                src="/imgs/cover.jpeg"
+                alt="cover"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
