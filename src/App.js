@@ -24,6 +24,8 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
 
+    setChoiceOne(null);
+    setChoiceTwo(null);
     //update card state
     setCards(shuffledCards);
     setTurns(0);
@@ -67,6 +69,11 @@ function App() {
     setDisabled(false);
   };
 
+  // start a new game automatically
+  useEffect(() => {
+    shuffleCards()
+  }, [])
+
   return (
     <div className="App">
       <h1>Rio Secreto Match</h1>
@@ -83,6 +90,7 @@ function App() {
           />
         ))}
       </div>
+      <p>{turns}</p>
     </div>
   );
 }
