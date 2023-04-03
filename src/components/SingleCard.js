@@ -4,7 +4,7 @@ import { useMediaQuery } from "@mui/material";
 export default function SingleCard({ card, handleChoice, flipped, disabled }) {
 
   const isMobile = useMediaQuery("(max-width: 600px)");
-  const size = isMobile ? "60px" : "200px";
+  const size = isMobile ? "75px" : "200px";
 
   const handleClick = () => {
     if (!disabled) {
